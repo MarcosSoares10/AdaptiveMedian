@@ -4,9 +4,10 @@ import numpy as np
 
 def executeMedian(WindowSize, inputimg, x, y, nx, ny):
     Maxsize = 5;
-    mask = np.zeros((WindowSize * WindowSize),dtype=np.double)
-    Dx = np.zeros((WindowSize * WindowSize),dtype=np.double)
-    Dy = np.zeros((WindowSize * WindowSize),dtype=np.double)
+    imgauxsize = WindowSize * WindowSize
+    mask = np.zeros(imgauxsize,dtype=np.double)
+    Dx = np.zeros(imgauxsize,dtype=np.double)
+    Dy = np.zeros(imgauxsize,dtype=np.double)
 
     Index = 0
     for a in range(- int(WindowSize / 2),int(WindowSize / 2)+1):
@@ -32,7 +33,7 @@ def executeMedian(WindowSize, inputimg, x, y, nx, ny):
     PixelValue = inputimg[x, y]
     #print(inputimg.shape)
 
-    for c in range(WindowSize * WindowSize):
+    for c in range(imgauxsize):
         NewX = x + Dx[c]
         NewY = y + Dy[c]
         if (NewX >= 0 and NewX < nx and NewY >= 0 and NewY < ny):
@@ -95,5 +96,4 @@ cv2.imwrite("filteredimage.bmp",result)
 
 cv2.imshow("teste",result)
 cv2.waitKey(0)
-
 
